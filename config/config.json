@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "mahardika",
+    "database": "admin",
+    "host": "172.20.0.1",
+    "dialect": "mysql"
+  }
+}
