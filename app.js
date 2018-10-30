@@ -8,8 +8,6 @@ var jwt           = require('express-jwt');
 
 var indexRouter  = require('./routes/index');
 var usersRouter  = require('./routes/users');
-var socketRouter = require('./routes/socket');
-var apiRouter    = require('./routes/api');
 var key          = require('./config/key.json');
 
 var app = express();
@@ -24,11 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(jwt({secret: key.secret}).unless({path:['/','/api/']}));
+app.use(jwt({secret: key.secret}).unless({path:['/users/token']}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/socket', socketRouter);
-app.use('/api', apiRouter)
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
